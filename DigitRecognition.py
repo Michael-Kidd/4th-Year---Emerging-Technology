@@ -2,7 +2,12 @@ import tkinter as tk
 # Tkinter is Python's de-facto standard GUI (Graphical User Interface) package.
 
 def check():
+    # Button click and user intends to check a Digit from a Drawing
     print('test')
+
+def checkFile():
+    # Button click and user intends to check a Digit from a File
+    print('test2')
 
 def clearCoords(event):
     # when left click released, remove the old coordinates so you can draw multiple non conjoined lines
@@ -48,12 +53,15 @@ canvas.pack()
 canvas2.pack()
 
 # Tkinter Button
-B = tk.Button(second_win, text ="Check Value", command = check)
+B = tk.Button(second_win, text ="Check File", command = check)
 B.pack()
+
+B2 = tk.Button(second_win, text ="Check Drawing", command = checkFile)
+B2.pack()
 
 # set the position of the windows
 root.geometry("+{xPos}+{yPos}".format(xPos = 0, yPos = 0))
-second_win.geometry("+{xPos}+{yPos}".format(xPos = 400, yPos = 0))
+second_win.geometry("+{xPos}+{yPos}".format(xPos = 410, yPos = 0))
 
 # set the old coords as null
 canvas.old_coords = None
