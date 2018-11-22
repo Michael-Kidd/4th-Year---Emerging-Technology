@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import math
 import sklearn.preprocessing as pre
 import gzip
+import skimage.io as ski_io
 
-from PIL import Image, ImageFilter
+from skimage.transform import resize
 
 
 def nueralNet(image):
@@ -20,11 +21,9 @@ def nueralNet(image):
     with gzip.open('data/train-labels-idx1-ubyte.gz', 'rb') as f:
         train_lbl = f.read()
 
-
     # Start a neural network, building it by layers.
     # using sequential model
     model = kr.models.Sequential()
-
     # Add a hidden layer with 1000 neurons and an input layer with 784.
     model.add(kr.layers.Dense(units=1000, activation='relu', input_dim=784))
     # Add a three neuron output layer.
@@ -36,6 +35,10 @@ def nueralNet(image):
     train_img = ~np.array(list(train_img[16:])).reshape(60000, 28, 28).astype(np.uint8)
     train_lbl =  np.array(list(train_lbl[ 8:])).astype(np.uint8)
     
+    
+    train_img = train_img/ 255
+    train_lbl = kr.utils.to_categorical(train_lbl)
+
     # reshape the image array
     inputs = train_img.reshape(60000, 784)
     # Binarize labels in a one-vs-all fashion
@@ -49,59 +52,19 @@ def nueralNet(image):
     model.fit(inputs, outputs, epochs=15, batch_size=10, verbose=1)
     # model.evaluate(test_img, test_lbl)
 
-def imageprepare(argv):
-    """
-    This function returns the pixel values.
-    The imput is a png file location.
-    """
-    im = Image.open(argv).convert('L')
-    width = float(im.size[0])
-    height = float(im.size[1])
-    newImage = Image.new('L', (28, 28), (255))  # creates white canvas of 28x28 pixels
-
-    if width > height:  # check which dimension is bigger
-        # Width is bigger. Width becomes 20 pixels.
-        nheight = int(round((20.0 / width * height), 0))  # resize height according to ratio width
-        if (nheight == 0):  # rare case but minimum is 1 pixel
-            nheight = 1
-            # resize and sharpen
-        img = im.resize((20, nheight), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-        wtop = int(round(((28 - nheight) / 2), 0))  # calculate horizontal position
-        newImage.paste(img, (4, wtop))  # paste resized image on white canvas
-    else:
-        # Height is bigger. Heigth becomes 20 pixels.
-        nwidth = int(round((20.0 / height * width), 0))  # resize width according to ratio height
-        if (nwidth == 0):  # rare case but minimum is 1 pixel
-            nwidth = 1
-            # resize and sharpen
-        img = im.resize((nwidth, 20), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-        wleft = int(round(((28 - nwidth) / 2), 0))  # caculate vertical pozition
-        newImage.paste(img, (wleft, 4))  # paste resized image on white canvas
-
-    # newImage.save("sample.png
-
-    tv = list(newImage.getdata())  # get pixel values
-
-    # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
-    tva = [(255 - x) * 1.0 / 255.0 for x in tv]
-    print(tva)
-    return tva
-
-
 def check():
     # Button clicked and user intends to check a Digit from a Drawing
     canvas.update()
-    canvas.postscript(file="image.ps", colormode='gray')
 
-    with open("image.ps", "rb") as imageFile:
-        file_content = imageFile.read()
-    
-    x=imageprepare('image.ps')
-    
-    print(len(x))
-    # mnist IMAGES are 28x28=784 pixels
+    # save canvas to .eps (postscript) file
+    canvas.postscript(file="image.eps", colormode="gray")
 
-    nueralNet(file_content)
+    img = ski_io.imread('image.eps')
+
+    print(img)
+    # img_resized = cv2.resize(img, dsize=(212, 212), interpolation=cv2.INTER_NEAREST)
+
+    # nueralNet(img_resized)
 
 
 def checkFile():
