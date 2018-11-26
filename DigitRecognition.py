@@ -8,7 +8,7 @@ import math
 import sklearn.preprocessing as pre
 import gzip
 
-from PIL import ImageTk, Image, ImageDraw
+from PIL import ImageTk, Image, ImageDraw, ImageFilter
 import PIL
 
 width = 280
@@ -20,7 +20,7 @@ black = (0,0,0)
 
 def nueralNet(img):
 
-    global model
+    global model, result
 
     # Read in images for training
     with gzip.open('data/train-images-idx3-ubyte.gz', 'rb') as f:
@@ -59,14 +59,19 @@ def nueralNet(img):
     outputs = encoder.transform(train_lbl)
 
     # Train the model
-    model.fit(inputs, outputs, epochs=1, batch_size=100)
+    model.fit(inputs, outputs, epochs=5, batch_size=1000)
 
     test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) / 255.0
     test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
     
-    img = np.array(img).reshape(28, 28).astype(np.uint8)
+    img =  np.array(list(img)).reshape(1,784)
+
+    # for testing the encoder
+    # for i in range(10):
+    #    print(i, encoder.transform([i]))
 
     print(model.predict_classes(img))
+    result.config(text='You Wrote the Number '+str(model.predict_classes(img)))
 
 
 def clearCanvas(event):
@@ -82,7 +87,10 @@ def save():
 
     global image1
 
-    img = image1.resize((28, 28), Image.BILINEAR)
+    img = image1.resize((28, 28), Image.BICUBIC)
+    img.save("image.png")
+    
+    img = imageprepare('image.png')
 
     nueralNet(img)
     
@@ -90,9 +98,42 @@ def save():
 def paint(event):
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
-    cv.create_oval(x1, y1, x2, y2, fill="black",width=5)
-    draw.line([x1, y1, x2, y2],fill="black",width=5)
+    cv.create_oval(x1, y1, x2, y2, fill="black",width=12)
+    draw.line([x1, y1, x2, y2],fill="black",width=12)
 
+def imageprepare(argv):
+
+    im = Image.open(argv).convert('L')
+    width = float(im.size[0])
+    height = float(im.size[1])
+    newImage = Image.new('L', (28, 28), (255))
+
+    if width > height: 
+
+        nheight = int(round((20.0 / width * height), 0))
+        if (nheight == 0): 
+            nheight = 1
+
+        img = im.resize((20, nheight), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
+        wtop = int(round(((28 - nheight) / 2), 0))
+        newImage.paste(img, (4, wtop)) 
+    else:
+
+        nwidth = int(round((20.0 / height * width), 0))  
+        
+        if (nwidth == 0):  
+            nwidth = 1
+
+        img = im.resize((nwidth, 20), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
+        wleft = int(round(((28 - nwidth) / 2), 0)) 
+        newImage.paste(img, (wleft, 4)) 
+
+    tv = list(newImage.getdata())
+
+    # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
+    tva = [(255 - x) * 1.0 / 255.0 for x in tv]
+
+    return tva
 
 # Start a neural network, building it by layers.
 # using sequential model
