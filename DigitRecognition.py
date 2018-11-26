@@ -17,7 +17,6 @@ center = height//2
 white = (255, 255, 255)
 black = (0,0,0)
 
-
 def nueralNet(img):
 
     global model, result
@@ -43,7 +42,7 @@ def nueralNet(img):
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # reshape the images and labels into 28x28 arrays.
-    train_img = ~np.array(list(train_img[16:])).reshape(60000, 28, 28).astype(np.uint8)
+    train_img = ~np.array(list(train_img[16:])).reshape(60000, 1, 784).astype(np.uint8)
     train_lbl =  np.array(list(train_lbl[ 8:])).astype(np.uint8)
 
     train_img = train_img/ 255
@@ -79,7 +78,7 @@ def clearCanvas(event):
     global image1, draw
 
     cv.delete("all")
-    image1 = PIL.Image.new("RGB", (width, height), white)
+    image1 = PIL.Image.new("RGB", (width, height), black)
     draw = ImageDraw.Draw(image1)
     
 
@@ -99,47 +98,25 @@ def paint(event):
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
     cv.create_oval(x1, y1, x2, y2, fill="black",width=12)
-    draw.line([x1, y1, x2, y2],fill="black",width=12)
+    draw.line([x1, y1, x2, y2],fill="white",width=12)
 
 def imageprepare(argv):
 
     im = Image.open(argv).convert('L')
-    width = float(im.size[0])
-    height = float(im.size[1])
-    newImage = Image.new('L', (28, 28), (255))
+    # im.show()
 
-    if width > height: 
-
-        nheight = int(round((20.0 / width * height), 0))
-        if (nheight == 0): 
-            nheight = 1
-
-        img = im.resize((20, nheight), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-        wtop = int(round(((28 - nheight) / 2), 0))
-        newImage.paste(img, (4, wtop)) 
-    else:
-
-        nwidth = int(round((20.0 / height * width), 0))  
-        
-        if (nwidth == 0):  
-            nwidth = 1
-
-        img = im.resize((nwidth, 20), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-        wleft = int(round(((28 - nwidth) / 2), 0)) 
-        newImage.paste(img, (wleft, 4)) 
-
-    tv = list(newImage.getdata())
+    tv = list(im.getdata())
 
     # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
-    tva = [(255 - x) * 1.0 / 255.0 for x in tv]
-
-    return tva
+    tv = [(255 - x) * 1.0 / 255.0 for x in tv]
+    
+    return tv
 
 # Start a neural network, building it by layers.
 # using sequential model
 model = kr.models.Sequential()
 
-image1 = PIL.Image.new("RGB", (width, height), white)
+image1 = PIL.Image.new("RGB", (width, height), black)
 draw = ImageDraw.Draw(image1)
 
 # set the position of the windows
