@@ -1,17 +1,26 @@
 # Tkinter is Python's de-facto standard GUI (Graphical User Interface) package.
 import tkinter as tk
+
 import keras as kr
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 import sklearn.preprocessing as pre
 import gzip
-import skimage.io as ski_io
 
-from skimage.transform import resize
+from PIL import ImageTk, Image, ImageDraw
+import PIL
+
+width = 280
+height = 280
+center = height//2
+white = (255, 255, 255)
+black = (0,0,0)
 
 
-def nueralNet(image):
+def nueralNet(img):
+
+    global model
 
     # Read in images for training
     with gzip.open('data/train-images-idx3-ubyte.gz', 'rb') as f:
@@ -21,21 +30,22 @@ def nueralNet(image):
     with gzip.open('data/train-labels-idx1-ubyte.gz', 'rb') as f:
         train_lbl = f.read()
 
-    # Start a neural network, building it by layers.
-    # using sequential model
-    model = kr.models.Sequential()
+    with gzip.open('data/t10k-images-idx3-ubyte.gz', 'rb') as f:
+        test_img = f.read()
+
+    with gzip.open('data/t10k-labels-idx1-ubyte.gz', 'rb') as f:
+        test_lbl = f.read()
+
     # Add a hidden layer with 1000 neurons and an input layer with 784.
-    model.add(kr.layers.Dense(units=1000, activation='relu', input_dim=784))
-    # Add a three neuron output layer.
-    model.add(kr.layers.Dense(units=10, activation='softmax'))
-    
-    model.compile(loss='categorical_crossentropy', optimizer='ADAM', metrics=['accuracy'])
+    model.add(kr.layers.Dense(512, input_dim=784, activation="relu", kernel_initializer="normal"))
+
+    model.add(kr.layers.Dense(10, activation="softmax", kernel_initializer="normal"))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # reshape the images and labels into 28x28 arrays.
     train_img = ~np.array(list(train_img[16:])).reshape(60000, 28, 28).astype(np.uint8)
     train_lbl =  np.array(list(train_lbl[ 8:])).astype(np.uint8)
-    
-    
+
     train_img = train_img/ 255
     train_lbl = kr.utils.to_categorical(train_lbl)
 
@@ -47,98 +57,71 @@ def nueralNet(image):
     # Trains the model for a fixed number of epochs (iterations on a dataset).
     encoder.fit(train_lbl)
     outputs = encoder.transform(train_lbl)
-    
+
     # Train the model
-    model.fit(inputs, outputs, epochs=15, batch_size=10, verbose=1)
-    # model.evaluate(test_img, test_lbl)
+    model.fit(inputs, outputs, epochs=1, batch_size=100)
 
-def check():
-    # Button clicked and user intends to check a Digit from a Drawing
-    canvas.update()
+    test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) / 255.0
+    test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
+    
+    img = np.array(img).reshape(28, 28).astype(np.uint8)
 
-    # save canvas to .eps (postscript) file
-    canvas.postscript(file="image.eps", colormode="gray")
-
-    img = ski_io.imread('image.eps')
-
-    print(img)
-    # img_resized = cv2.resize(img, dsize=(212, 212), interpolation=cv2.INTER_NEAREST)
-
-    # nueralNet(img_resized)
-
-
-def checkFile():
-    # Button clicked and user intends to check a Digit from a File
-    print('test2')
-
-
-def clearCoords(event):
-    # when left click released, remove the old coordinates so you can draw multiple non conjoined lines
-    # Without this, if you draw a seven or some letters, it would draw a continuous line, unbroken
-    canvas.old_coords = None
+    print(model.predict_classes(img))
 
 
 def clearCanvas(event):
-    # set the old coordinates to zero
-    canvas.old_coords = None
-    # clear everything from the canvas
-    canvas.delete("all")
+    
+    global image1, draw
+
+    cv.delete("all")
+    image1 = PIL.Image.new("RGB", (width, height), white)
+    draw = ImageDraw.Draw(image1)
+    
+
+def save():
+
+    global image1
+
+    img = image1.resize((28, 28), Image.BILINEAR)
+
+    nueralNet(img)
+    
+
+def paint(event):
+    x1, y1 = (event.x - 1), (event.y - 1)
+    x2, y2 = (event.x + 1), (event.y + 1)
+    cv.create_oval(x1, y1, x2, y2, fill="black",width=5)
+    draw.line([x1, y1, x2, y2],fill="black",width=5)
 
 
-def draw(event):
-    # set X and Y coordinates to the event X and Y.
-    x, y = event.x, event.y
-    # if the old coordinates have a value
-    if canvas.old_coords:
-        # set x1 and y1 coordinates to the old coordinates
-        x1, y1 = canvas.old_coords
-        # create a line, from the new coordinates, back to the old coordinates
-        canvas.create_line(x, y, x1, y1)
-    # set the old coordinates to the values that the new coordinates to be used as old coordinates, next iteration    
-    canvas.old_coords = x, y
+# Start a neural network, building it by layers.
+# using sequential model
+model = kr.models.Sequential()
 
-
-def main():
-    print('Program Started')
-
-if __name__ == "__main__":main()
-
-
-# Main Window - canvas
-root = tk.Tk()
-# second window - control panel
-second_win = tk.Toplevel(root)
-
-# show a canvas page
-canvas = tk.Canvas(root, width=560, height=560)
-canvas2 = tk.Canvas(second_win, width=200, height=300)
-
-# create text
-canvas2.create_text(100,10,fill="darkblue",font="Times 12 italic bold", text="Left click to Draw")
-canvas2.create_text(100,30,fill="darkblue",font="Times 12 italic bold", text="Right click to Clear")
-
-# pack the canvas to be shown
-canvas.pack()
-canvas2.pack()
-
-# Tkinter Button
-B = tk.Button(second_win, text ="Check File", command = checkFile)
-B.pack()
-
-B2 = tk.Button(second_win, text ="Check Drawing", command = check)
-B2.pack()
+image1 = PIL.Image.new("RGB", (width, height), white)
+draw = ImageDraw.Draw(image1)
 
 # set the position of the windows
+root = tk.Tk()
 root.geometry("+{xPos}+{yPos}".format(xPos = 0, yPos = 0))
-second_win.geometry("+{xPos}+{yPos}".format(xPos = 561, yPos = 0))
 
-# set the old coords as null
-canvas.old_coords = None
-# If the left mouse button held, Run the function that will draw a line
-root.bind('<B1-Motion>', draw)
-# If the right mouse button pressed, Run the function that clear the canvas
-root.bind('<Button-3>', clearCanvas)
-# When the left mouse button is released, reset the coordinates so you can break a line or draw multiple images
-root.bind('<ButtonRelease-1>', clearCoords)
-# loop
+# Tkinter create a canvas to draw on
+cv = tk.Canvas(root, width=width, height=height, bg='white')
+
+# pack the gui
+cv.pack()
+cv.bind("<B1-Motion>", paint)
+cv.bind('<Button-3>', clearCanvas)
+
+# create text and buttons
+button = tk.Button(text="Check Number",command=save)
+text1 = tk.Label(text="Left Click Draw")
+text2 = tk.Label(text="Right Click Clear")
+result = tk.Label(text="You have not Checked a Number yet")
+
+text1.pack()
+text2.pack()
+button.pack()
+result.pack()
+
 root.mainloop()
