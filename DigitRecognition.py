@@ -69,7 +69,7 @@ def nueralNet():
     outputs = encoder.transform(train_lbl)
 
     # Train the model
-    model.fit(inputs, outputs, epochs=15, batch_size=100)
+    model.fit(inputs, outputs, epochs=150, batch_size=100)
 
     test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) / 255.0
     test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
@@ -104,7 +104,10 @@ def save():
     # or have the user do it
     img = imageprepare('image.png')
 
+    # attempt to load the model data
     loadModel()
+
+    # test our image
     testImage(img)
     
 
@@ -137,10 +140,12 @@ def imageprepare(argv):
     # return the image data
     return tv
 
+
 def saveModel():
 
     global model
 
+    # save the current model
     kr.models.save_model(
         model,
         "model.h5py",
@@ -148,13 +153,16 @@ def saveModel():
         include_optimizer=True
     )
 
+
 def loadModel():
     global model
     
+    # if the model file exists load it
     if os.path.isfile('model.h5py'): 
         model = kr.models.load_model('model.h5py')
     else:
-        # start the nueral network
+        # if the file doesnt exist
+        # start the nueral network training curremntly set to 150 epochs 
         nueralNet()
 
 # Start a neural network, building it by layers.
