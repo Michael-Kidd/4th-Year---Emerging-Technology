@@ -43,24 +43,26 @@ Install keras by running the following command in a Command Line:
 ```
 Conda Install Keras
 ```
+
 Install Pillow by running the following command in a Command Line:
 ```
 Conda Install Pillow
 ```
 
+Install Numpy by running the following command in a Command Line:
 ```
-conda install numpy
-```
-
-```
-conda install scipy
+Conda install numpy
 ```
 
+Install Scipy by running the following command in a Command Line:
 ```
-conda install matplotlib
+Conda install scipy
 ```
 
-
+Install matplotlib by running the following command in a Command Line:
+```
+Conda install matplotlib
+```
 
 
 ```
