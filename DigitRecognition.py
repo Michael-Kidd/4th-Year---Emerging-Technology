@@ -9,6 +9,7 @@ import sklearn.preprocessing as pre
 import gzip
 import PIL
 from PIL import Image, ImageDraw
+import os.path
 
 
 width = 280
@@ -17,10 +18,18 @@ center = height//2
 white = (255, 255, 255)
 black = (0,0,0)
 
-def nueralNet(img):
+def testImage(img):
+
+    global result, model
+
+    img =  np.array(list(img)).reshape(1,784)
+
+    result.config(text='You Wrote the Number '+str(model.predict_classes(img)))
+
+def nueralNet():
 
     # global variables - in place of static variables
-    global model, result
+    global model
 
     # Read in images for training
     with gzip.open('data/train-images-idx3-ubyte.gz', 'rb') as f:
@@ -51,6 +60,7 @@ def nueralNet(img):
 
     # reshape the image array
     inputs = train_img.reshape(60000, 784)
+
     # Binarize labels in a one-vs-all fashion
     encoder = pre.LabelBinarizer()
 
@@ -59,19 +69,12 @@ def nueralNet(img):
     outputs = encoder.transform(train_lbl)
 
     # Train the model
-    model.fit(inputs, outputs, epochs=5, batch_size=100)
+    model.fit(inputs, outputs, epochs=15, batch_size=100)
 
     test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) / 255.0
     test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
     
-    img =  np.array(list(img)).reshape(1,784)
-
-    # for testing the encoder
-    # for i in range(10):
-    #    print(i, encoder.transform([i]))
-
-    print(model.predict_classes(img))
-    result.config(text='You Wrote the Number '+str(model.predict_classes(img)))
+    saveModel()
 
 
 def clearCanvas(event):
@@ -80,6 +83,7 @@ def clearCanvas(event):
 
     # clears the canvas seen by the user
     cv.delete("all")
+
     # clear the pillow image that is not seen by the user
     image1 = PIL.Image.new("RGB", (width, height), black)
     draw = ImageDraw.Draw(image1)
@@ -91,14 +95,17 @@ def save():
 
     # resize the image so it matches the mnist data set conditions
     img = image1.resize((28, 28), Image.BICUBIC)
+    
     # save the image
     img.save("image.png")
+
     # read back in the image,
     # I chose to do it this way in case i wanted to give it an image
     # or have the user do it
     img = imageprepare('image.png')
-    # start the nueral network
-    nueralNet(img)
+
+    loadModel()
+    testImage(img)
     
 
 def paint(event):
@@ -106,9 +113,10 @@ def paint(event):
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
 
-    # create an dot using these positions 
+    # create a dot using these positions 
     # pillow image - not seen by user
     cv.create_oval(x1, y1, x2, y2, fill="black",width=12)
+
     # canvas image - seen by user
     draw.line([x1, y1, x2, y2],fill="white",width=12)
 
@@ -128,6 +136,26 @@ def imageprepare(argv):
     
     # return the image data
     return tv
+
+def saveModel():
+
+    global model
+
+    kr.models.save_model(
+        model,
+        "model.h5py",
+        overwrite=True,
+        include_optimizer=True
+    )
+
+def loadModel():
+    global model
+    
+    if os.path.isfile('model.h5py'): 
+        model = kr.models.load_model('model.h5py')
+    else:
+        # start the nueral network
+        nueralNet()
 
 # Start a neural network, building it by layers.
 # using sequential model
