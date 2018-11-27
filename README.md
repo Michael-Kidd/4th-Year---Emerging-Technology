@@ -64,19 +64,6 @@ Install matplotlib by running the following command in a Command Line:
 Conda install matplotlib
 ```
 
-
-```
-import numpy as np
-import matplotlib.pyplot as plt
-import math
-import sklearn.preprocessing as pre
-import gzip
-import PIL
-from PIL import Image, ImageDraw
-import os.path
-
-```
-
 ## Running the tests
 
 Explain how to run the automated tests for this system
