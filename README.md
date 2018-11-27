@@ -48,6 +48,20 @@ Install Pillow by running the following command in a Command Line:
 Conda Install Pillow
 ```
 
+```
+conda install numpy
+```
+
+```
+conda install scipy
+```
+
+```
+conda install matplotlib
+```
+
+
+
 
 ```
 import numpy as np
