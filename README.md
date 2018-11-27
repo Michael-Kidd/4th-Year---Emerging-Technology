@@ -35,9 +35,8 @@ What things you need to install the software and how to install them
 
 Install Anaconda along with python, During the installation make sure to choose the option to add python and Anaconda to the envoirnment path. Download Anaconda from the following location.
 
-```
-https://www.anaconda.com/download/
-```
+[Anaconda Download Link](https://www.anaconda.com/download/)
+
 
 Install keras by running the following command in a Command Line:
 ```
