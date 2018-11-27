@@ -7,35 +7,59 @@ The Programs, notebooks and files contained here have multiple purposes:
 - A Mnist Notebook that shows how to use the Mnist data set to identify handwritten digits.
 - The main Project program written in python and allows a user to write an image on a canvas and will train a neural network to identify what the user have written.
  
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+import tkinter as tk
+import keras as kr
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+import sklearn.preprocessing as pre
+import gzip
+import PIL
+from PIL import Image, ImageDraw
+import os.path
+
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+What things you need to install the software and how to install them
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Install Anaconda along with python, During the installation make sure to choose the option to add python and Anaconda to the envoirnment path. Download Anaconda from the following location.
 
 ```
-until finished
+https://www.anaconda.com/download/
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Install keras by running the following command in a Command Line:
+```
+Conda Install Keras
+```
+Install Pillow by running the following command in a Command Line:
+```
+Conda Install Pillow
+```
+
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+import sklearn.preprocessing as pre
+import gzip
+import PIL
+from PIL import Image, ImageDraw
+import os.path
+
+```
 
 ## Running the tests
 
