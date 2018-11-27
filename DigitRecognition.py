@@ -18,6 +18,7 @@ center = height//2
 white = (255, 255, 255)
 black = (0,0,0)
 
+
 def testImage(img):
 
     global result, model
@@ -25,6 +26,7 @@ def testImage(img):
     img =  np.array(list(img)).reshape(1,784)
 
     result.config(text='You Wrote the Number '+str(model.predict_classes(img)))
+
 
 def nueralNet():
 
@@ -122,6 +124,7 @@ def paint(event):
 
     # canvas image - seen by user
     draw.line([x1, y1, x2, y2],fill="white",width=12)
+
 
 def imageprepare(argv):
 
