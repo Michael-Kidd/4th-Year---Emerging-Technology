@@ -33,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 * Gzip - Lossless Compression and Decompression utility we use to manage the MNist Data Set.
 * Pillow - an image library in python. We will use it to manage images for our programs.
 
-### Installing
+#### Installing Anaconda
 
 ----------
 
@@ -44,29 +44,50 @@ Install Anaconda along with python, During the installation make sure to choose 
 
 [Anaconda Download Link](https://www.anaconda.com/download/)
 
-To Install Anaconda Click the Link Above and your will see the following screen:
+To Install Anaconda Click the Link Above and your will see the following screen: <br />
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/AnacondaDownload.png)
+
+Choose a Version of python that you wish to use then click to download it. Locate the downloaded file and run it.
 
 
 
+----------
+
+
+
+
+#### Installing Keras
+----------
 Install keras by running the following command in a Command Line: <br /> 
 ```
 $ Conda Install Keras 
 ```
+
+#### Installing Pillow
+----------
 
 Install Pillow by running the following command in a Command Line: <br />
 ```
 $ Conda Install Pillow 
 ```
 
+#### Installing Numpy
+----------
 Install Numpy by running the following command in a Command Line: <br />
 ```
 $ Conda install numpy 
 ```
 
+#### Installing Scipy
+----------
+
 Install Scipy by running the following command in a Command Line: <br />
 ```
 $ Conda install scipy 
 ```
+
+#### Installing Matplotlib
+----------
 
 Install matplotlib by running the following command in a Command Line: <br />
 ```
