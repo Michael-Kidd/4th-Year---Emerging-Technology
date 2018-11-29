@@ -162,7 +162,7 @@ def loadModel():
     
     # if the model file exists load it
     if os.path.isfile('data/model.h5py'): 
-        model = kr.models.load_model('model.h5py')
+        model = kr.models.load_model('data/model.h5py')
     else:
         # if the file doesnt exist
         # start the nueral network training curremntly set to 150 epochs 

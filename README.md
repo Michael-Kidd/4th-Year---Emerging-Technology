@@ -47,8 +47,29 @@ Install Anaconda along with python, During the installation make sure to choose 
 To Install Anaconda Click the Link Above and your will see the following screen: <br />
 ![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/AnacondaDownload.png)
 
-Choose a Version of python that you wish to use then click to download it. Locate the downloaded file and run it.
+Choose a Version of python that you wish to use then click to download it. Locate the downloaded file and run it.<br />
 
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen1Anaconda.png)
+
+You will be presented with this screen.<br />
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen2Anaconda.PNG)
+
+Once you go passed the Terms and Conditions you will see the next screen.<br />
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen3Anaconda.PNG)
+
+Here you can choose if you want to install the program just for you or for all users on your machine.<br />
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen4Anaconda.PNG)
+
+On the next screen you must select both options. The first will add Anaconda to the PATH Environment, the second will set the version of python you chose as the Default on this machine.<br />
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen5Anaconda.PNG)
+
+Once completed click next, now Anaconda will install.
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen6Anaconda.PNG)
 
 
 ----------
@@ -96,23 +117,7 @@ $ Conda install matplotlib
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+[![Link](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/youtube.PNG)](http://Youtube.com)
 
 ## Deployment
 
