@@ -24,14 +24,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 ----------
-
+* Anaconda - A free and open source distribution of the Python and R programming languages for data science and machine learning related applications.
 * Tkinter - A GUI used as standard in Python, We will use this to Take a Digit from the user.
 * Keras - A High level machine learning API, used to train neural networks.
 * Numpy - A fundamental package for scientific computing in python. We use it for array handling and random distributions.
 * Matplotlib - 2D plotting library for python. We use it to show plots in our notebooks.
 * SKlearn - Used for machine learning in Python.
 * Gzip - Lossless Compression and Decompression utility we use to manage the MNist Data Set.
-* Pillow - an image library in python. We will use it to manage images for our programs. 
+* Pillow - an image library in python. We will use it to manage images for our programs.
 
 ### Installing
 
@@ -43,6 +43,9 @@ What things you need to install the software and how to install them
 Install Anaconda along with python, During the installation make sure to choose the option to add python and Anaconda to the envoirnment path. Download Anaconda from the following location.
 
 [Anaconda Download Link](https://www.anaconda.com/download/)
+
+To Install Anaconda Click the Link Above and your will see the following screen:
+
 
 
 Install keras by running the following command in a Command Line: <br /> 
