@@ -72,16 +72,13 @@ Once completed click next, now Anaconda will install.
 ![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Screen6Anaconda.PNG)
 
 
-----------
-
-
 
 
 #### Installing Keras
 ----------
 Install keras by running the following command in a Command Line: <br /> 
 ```
-$ Conda Install Keras 
+$ Conda install Keras 
 ```
 
 #### Installing Pillow
@@ -89,7 +86,7 @@ $ Conda Install Keras
 
 Install Pillow by running the following command in a Command Line: <br />
 ```
-$ Conda Install Pillow 
+$ Conda install Pillow 
 ```
 
 #### Installing Numpy
@@ -115,9 +112,16 @@ Install matplotlib by running the following command in a Command Line: <br />
 $ Conda install matplotlib 
 ```
 
+#### Installing SLearn
+----------
+Install SKLearn by running the following command: <br />
+```
+$ Conda install scikit-learn
+```
+
 ## Running the tests
 
-[![Link](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/youtube.PNG)](http://Youtube.com)
+[![Link](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/youtube.PNG)](https://www.youtube.com/watch?v=NEdvWyPBqVg&feature=youtu.be)
 
 ## Deployment
 
