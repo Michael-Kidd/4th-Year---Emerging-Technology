@@ -1,4 +1,9 @@
-# 4th-Year---Emerging-Technology
+# 4th Year Emerging Technology
+
+----------
+
+----------
+
 
 The Programs, notebooks and files contained here have multiple purposes:
 
@@ -10,26 +15,28 @@ The Programs, notebooks and files contained here have multiple purposes:
 
 ## Getting Started
 
+----------
+
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 
 ### Prerequisites
 
-```
-import tkinter as tk
-import keras as kr
-import numpy as np
-import matplotlib.pyplot as plt
-import math
-import sklearn.preprocessing as pre
-import gzip
-import PIL
-from PIL import Image, ImageDraw
-import os.path
+----------
 
-```
+* Tkinter - A GUI used as standard in Python, We will use this to Take a Digit from the user.
+* Keras - A High level machine learning API, used to train neural networks.
+* Numpy - A fundamental package for scientific computing in python. We use it for array handling and random distributions.
+* Matplotlib - 2D plotting library for python. We use it to show plots in our notebooks.
+* SKlearn - Used for machine learning in Python.
+* Gzip - Lossless Compression and Decompression utility we use to manage the MNist Data Set.
+* Pillow - an image library in python. We will use it to manage images for our programs. 
 
 ### Installing
+
+----------
+
 
 What things you need to install the software and how to install them
 
@@ -38,29 +45,29 @@ Install Anaconda along with python, During the installation make sure to choose 
 [Anaconda Download Link](https://www.anaconda.com/download/)
 
 
-Install keras by running the following command in a Command Line:
+Install keras by running the following command in a Command Line: <br /> 
 ```
-Conda Install Keras
-```
-
-Install Pillow by running the following command in a Command Line:
-```
-Conda Install Pillow
+$ Conda Install Keras 
 ```
 
-Install Numpy by running the following command in a Command Line:
+Install Pillow by running the following command in a Command Line: <br />
 ```
-Conda install numpy
-```
-
-Install Scipy by running the following command in a Command Line:
-```
-Conda install scipy
+$ Conda Install Pillow 
 ```
 
-Install matplotlib by running the following command in a Command Line:
+Install Numpy by running the following command in a Command Line: <br />
 ```
-Conda install matplotlib
+$ Conda install numpy 
+```
+
+Install Scipy by running the following command in a Command Line: <br />
+```
+$ Conda install scipy 
+```
+
+Install matplotlib by running the following command in a Command Line: <br />
+```
+$ Conda install matplotlib 
 ```
 
 ## Running the tests
@@ -89,14 +96,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Python](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Keras](https://maven.apache.org/) - Dependency Management
-* [Tensorflow](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Python](https://www.python.org/downloads/) - The Programming Language used.
+* [Keras](https://keras.io/) - High-level neural networks API.
+* [Tensorflow](https://www.tensorflow.org/) - Machine learning framework.
 
 
 ## Versioning
 
-This progran will only be used during the completion of the course and will have no release or commercial use.
+This program will only be used during the completion of the course and will have no release or commercial use.
 
 ## Authors
 

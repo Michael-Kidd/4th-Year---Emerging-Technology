@@ -99,12 +99,12 @@ def save():
     img = image1.resize((28, 28), Image.BICUBIC)
     
     # save the image
-    img.save("image.png")
+    img.save("data/image.png")
 
     # read back in the image,
     # I chose to do it this way in case i wanted to give it an image
     # or have the user do it
-    img = imageprepare('image.png')
+    img = imageprepare('data/image.png')
 
     # attempt to load the model data
     loadModel()
@@ -151,7 +151,7 @@ def saveModel():
     # save the current model
     kr.models.save_model(
         model,
-        "model.h5py",
+        "data/model.h5py",
         overwrite=True,
         include_optimizer=True
     )
@@ -161,7 +161,7 @@ def loadModel():
     global model
     
     # if the model file exists load it
-    if os.path.isfile('model.h5py'): 
+    if os.path.isfile('data/model.h5py'): 
         model = kr.models.load_model('model.h5py')
     else:
         # if the file doesnt exist
