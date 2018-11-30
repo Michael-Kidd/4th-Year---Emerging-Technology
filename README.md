@@ -203,7 +203,6 @@ First you must clone the repo: Open up a command line terminal and change to the
 
 Then you must clone by using the following command as seen in the image below:
 
-
 ```
 $ git clone https://github.com/Michael-Kidd/4th-Year---Emerging-Technology
 ```
@@ -252,4 +251,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 ----
 
-Thank you to Dr. Ian McCloughlin for the course work, assistance and tutorials on completing the project
+Thank you to Dr. Ian McLoughlin for the course work, assistance and tutorials on completing the project
