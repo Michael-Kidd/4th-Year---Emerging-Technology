@@ -73,10 +73,11 @@ Once completed click next, now Anaconda will install.
 
 
 
-
 #### Installing Keras
 ----------
 Install keras by running the following command in a Command Line: <br /> 
+
+
 ```
 $ Conda install Keras 
 ```
@@ -85,6 +86,8 @@ $ Conda install Keras
 ----------
 
 Install Pillow by running the following command in a Command Line: <br />
+
+
 ```
 $ Conda install Pillow 
 ```
@@ -92,6 +95,8 @@ $ Conda install Pillow
 #### Installing Numpy
 ----------
 Install Numpy by running the following command in a Command Line: <br />
+
+
 ```
 $ Conda install numpy 
 ```
@@ -100,6 +105,8 @@ $ Conda install numpy
 ----------
 
 Install Scipy by running the following command in a Command Line: <br />
+
+
 ```
 $ Conda install scipy 
 ```
@@ -108,6 +115,8 @@ $ Conda install scipy
 ----------
 
 Install matplotlib by running the following command in a Command Line: <br />
+
+
 ```
 $ Conda install matplotlib 
 ```
@@ -115,19 +124,54 @@ $ Conda install matplotlib
 #### Installing SLearn
 ----------
 Install SKLearn by running the following command: <br />
+
+
 ```
 $ Conda install scikit-learn
 ```
 
 ## Running the tests
+----
 
 [![Link](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/youtube.PNG)](https://www.youtube.com/watch?v=NEdvWyPBqVg&feature=youtu.be)
 
-## Deployment
+### How to test the Digit Recognition Program.
+----
 
-Add additional notes about how to deploy this on a live system
+First you must clone the repo: Open up a command line terminal and change to the directory where you would like to store the files
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Gitclone.PNG)
+
+Then you must clone by using the following command as seen in the image below:
+
+
+```
+$ git clone https://github.com/Michael-Kidd/4th-Year---Emerging-Technology
+```
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/Gitclone2.PNG)
+
+Run the following command to be presented with the canvas that will show the GUI you will use:
+
+```
+$ python DigitRecognition.py
+```
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/RunpyDigit.PNG)
+
+![](https://raw.githubusercontent.com/Michael-Kidd/4th-Year---Emerging-Technology/master/Data/images%20for%20wiki%20and%20readme/RunpyDigit2.PNG)
+
+
+
+## Deployment.
+----
+### How to Run the Notebook.
+----
+### How to Run the Digit Recognition Program.
+----
 
 ## Built With
+---
 
 * [Python](https://www.python.org/downloads/) - The Programming Language used.
 * [Keras](https://keras.io/) - High-level neural networks API.
@@ -135,17 +179,21 @@ Add additional notes about how to deploy this on a live system
 
 
 ## Versioning
+----
 
 This program will only be used during the completion of the course and will have no release or commercial use.
 
 ## Authors
+----
 
 * **Michael Kidd** - *Main body of work* - [GitHub](https://github.com/Michael-Kidd/)
 
 ## License
+----
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
+----
 
 Thank you to Dr. Ian McCloughlin for the course work, assistance and tutorials on completing the project
