@@ -7,8 +7,8 @@
 
 The Programs, notebooks and files contained here have multiple purposes:
 
-- A Numpy notebook that shows how the numpy package works and the different distributions that are used with numpy.
-- A Iris Dataset notebook that shows how keras can learn from data set created using flowers and can be read in and we can use to determine an unknown flower and test the neural network to narrow down which flower we have input.
+- A Numpy notebook that shows how the Numpy package works and the different distributions that are used with Numpy.
+- An Iris Dataset notebook that shows how Keras can learn from data set created using flowers and can be read in and we can use to determine an unknown flower and test the neural network to narrow down which flower we have input.
 - A Mnist Notebook that shows how to use the Mnist data set to identify handwritten digits.
 - The main Project program written in python and allows a user to write an image on a canvas and will train a neural network to identify what the user have written.
 - A Digit recognition notebook that explains and breaks down the steps and structure of the project.
@@ -117,15 +117,13 @@ $ Conda install scipy
 
 Install matplotlib by running the following command in a Command Line: <br />
 
-
 ```
 $ Conda install matplotlib 
 ```
 
 #### Installing SLearn
-----------
+----
 Install SKLearn by running the following command: <br />
-
 
 ```
 $ Conda install scikit-learn
@@ -251,4 +249,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 ----
 
-Thank you to Dr. Ian McLoughlin for the course work, assistance and tutorials on completing the project
+Thank you to Dr. Ian McLoughlin for the course work, assistance and tutorials on completing the project.
